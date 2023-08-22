@@ -1,0 +1,254 @@
+<!Doctype html>
+<html>
+	<head>
+		<title>calculator</title>
+		<style>
+		body{
+background:url('https://t3.ftcdn.net/jpg/05/40/04/46/360_F_540044645_euvM4jng8cjqkpwT6NkjyfHePtREP3JA.jpg');
+background-repeat:no-repeat;
+background-size:cover;
+}
+section{
+display:flex;
+justify-content:center;
+align-items:center;
+}
+.calculator{
+display:flex;
+min-height:70vh;
+justify-content:center;
+align-items:center;
+background-color:#3e3e3e;
+margin:0px 10px;
+background-color:#3e3e3e;
+border-radius:16px;
+box-shadow:0px 4px 15px #777777;
+display:flex;
+flex-direction:column;
+}
+.element{
+font-size:18px;
+width:60px;
+height:60px;
+margin:10px;
+border-radius:50%;
+border:none;
+}
+.element:hover{
+box-shadow:3px 3px 4px  #777777;
+}
+.gap input{
+background-color:#eeeeee;
+border:none;
+margin:10px;
+cursor:pointer;
+border-radius:16px;
+width:308px;
+font-size:26px;
+padding:20px 10px;
+text-align:right;
+}
+.element:hover{
+background-color:#333333;
+color:white;
+}
+#other{
+box-shadow:0px 4px 15px  #777777;
+margin:40px;
+padding:10px;
+}
+#arr{
+margin:54px 0px 0px 15px;
+border:3px solid white;
+border-width:0 3px 3px 0;
+display:inline-block;
+padding:7px;
+transform:rotate(-45deg);
+}
+#head{
+display:flex;
+flex-direction:row;
+justify-content:center;
+}
+#head select{
+height:40px;
+width:200px;
+margin:20px 50px;;
+border-radius:8px;
+float:left;
+}
+#calculator{
+display:flex;
+min-height:70vh;
+justify-content:center;
+align-items:center;
+background-color:#3e3e3e;
+margin:0px 10px;
+background-color:#3e3e3e;
+border-radius:16px;
+box-shadow:0px 4px 15px #777777;
+display:flex;
+flex-direction:column;
+}
+.hidden{
+display:none;
+}
+.head{
+display:flex;
+flex-direction:row;
+padding: 5px;
+justify-content:center;
+}
+#select{
+margin:27px;
+padding:8px;
+width:130px;
+border-radius:6px;
+}
+</style>
+	</head>
+	<body>
+	<div class="head">
+	<div>
+	<h2 style="color:white;font-size:34px;">Let's Calculate</h2>
+	</div>
+
+	</div>
+		<section>
+			<div class="calculator" id="basic-calculator">
+				<div class="gap">
+					<input type="text" placeholder="0" id="inputbox">
+	            </div>
+					<div class="button">
+						<button class="element">AC</button>
+						<button class="element">Del</button>
+						<button class="element">-</button>
+						<button class="element">%</button>
+					</div>
+					<div class="button">
+						<button class="element">7</button>
+						<button class="element">8</button>
+						<button class="element">9</button>
+						<button class="element" id="multi">*</button>
+					</div>
+					<div class="button">
+						<button class="element">4</button>
+						<button class="element">5</button>
+						<button class="element">6</button>
+						<button class="element">/</button>
+					</div>
+					<div class="button">
+						<button class="element">1</button>
+						<button class="element">2</button>
+						<button class="element">3</button>
+						<button class="element">+</button>
+					</div>
+					<div class="button">
+						<button class="element">0</button>
+						<button class="element">pow</button>
+						<button class="element">.</button>
+						<button class="element">=</button>
+					</div>
+				</div>
+				<div id="arr" onclick="hide()"><i>
+					</i>
+				</div>
+				<div id="other">
+					<div class="button">
+						<button class="element">sin</button>
+						<button class="element">cos</button>
+						<button class="element">tan</button>
+						<button class="element">log</button>
+					</div>
+					<div class="button">
+						<button class="element">ln</button>
+						<button class="element">DEG</button>
+						<button class="element">sqrt</button>
+						<button class="element">e</button>
+					</div>
+					<div class="button">
+						<button class="element">pi</button>
+						<button class="element">(</button>
+						<button class="element">)</button>
+						<button class="element">ln2</button>
+					</div>
+				</div>
+			</div>
+			</section>
+			<script>
+		function hide(){
+		let arr=document.getElementById('arr');
+		let other=document.getElementById('other');
+		if(other.style.display!='none'){
+		other.style.display='none';
+		arr.addEventListener('click',()=>{
+		arr.style.transform='rotate(-225deg)';
+		});
+		}
+		else{
+		other.style.display='block';
+		arr.addEventListener('click',()=>{
+		arr.style.transform='rotate(-45deg)';
+		});
+		}
+		}
+		hide();
+		let element=document.getElementsByClassName('element');
+		let inputbox=document.getElementById('inputbox');
+		let buttons=document.querySelectorAll('.button');
+		string="";
+		Array.from(buttons).forEach((button)=>{
+		button.addEventListener('click',(e)=>{
+	
+		if(e.target.innerHTML=='='){
+		string=eval(string);
+		inputbox.value=string;
+		}
+		else if(e.target.innerHTML=='AC'){
+		string="";
+		inputbox.value=string;
+		}
+		else if(e.target.innerHTML=='Del'){
+		string=string.slice(0,-1);
+		inputbox.value=string;
+		}
+		else if(e.target.innerHTML=='sin'){
+		
+		inputbox.value=Math.sin(inputbox.value*(3.141592653589793)/180);
+		
+		alert("angle should be given firstly");
+		}
+		else if(e.target.innerHTML=='cos'){
+		
+		inputbox.value=Math.cos(inputbox.value*(3.141592653589793)/180);
+		
+		alert("angle should be given firstly");
+		}
+		else if(e.target.innerHTML=='tan'){
+		
+		inputbox.value=Math.tan(inputbox.value*(3.141592653589793)/180);
+		
+		alert("angle should be given firstly");
+		}
+		else if(e.target.innerHTML=='log'){
+		inputbox.value=Math.log10(inputbox.value);
+		}
+		else if(e.target.innerHTML=='sqrt'){
+		inputbox.value=Math.sqrt(inputbox.value,2);
+		}
+		else if(e.target.innerHTML=='pow'){
+		inputbox.value=Math.pow(inputbox.value,2);
+		}
+		else if(e.target.innerHTML=='ln2'){
+		string=string+0.6931471805599453;
+		inputbox.value=string;
+		}
+		else{
+		string=string+e.target.innerHTML;
+		inputbox.value=string;
+		}
+		});
+		});
+		</script>
+		</body>
+	</html>
